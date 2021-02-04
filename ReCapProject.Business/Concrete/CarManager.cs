@@ -17,7 +17,15 @@ namespace ReCapProject.Business.Concrete
 
         public void Add(Car car)
         {
-            _carDal.Add(car);
+            if (car.Description.Length>=2&&car.DailyPrice>0)
+            {
+                _carDal.Add(car);
+            }
+            else
+            {
+                Console.WriteLine("Hatalı yazım");
+            }
+           
         }
 
         public void Delete(Car car)
@@ -32,7 +40,17 @@ namespace ReCapProject.Business.Concrete
 
         public List<Car> GetById(int id)
         {
-            return _carDal.GetById(id);
+            return _carDal.GetAll(c=>c.Id==id);
+        }
+
+        public List<Car> GetCarsByBrandId(int id)
+        {
+            return _carDal.GetAll(c => c.ColorId == id);
+        }
+
+        public List<Car> GetCarsByColorId(int id)
+        {
+            return _carDal.GetAll(c => c.ColorId == id);
         }
 
         public void Update(Car car)

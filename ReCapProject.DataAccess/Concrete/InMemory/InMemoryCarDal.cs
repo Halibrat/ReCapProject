@@ -3,11 +3,12 @@ using ReCapProject.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace ReCapProject.DataAccess.Concrete.InMemory
 {
-    public class InMemoryCarDal : ICarDal
+    public class InMemoryCarDal:ICarDal
     {
         List<Car> _cars;
         public InMemoryCarDal()
@@ -53,6 +54,14 @@ namespace ReCapProject.DataAccess.Concrete.InMemory
             return _cars.Where(c => c.Id == id).ToList();
         }
 
+        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
 
+        public Car Get(Expression<Func<Car, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
