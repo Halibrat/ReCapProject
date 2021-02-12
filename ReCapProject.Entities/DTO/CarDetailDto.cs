@@ -12,5 +12,6 @@ namespace ReCapProject.Entities.DTO
         public string Description { get; set; }
         public string ColorName { get; set; }
         public decimal DailyPrice { get; set; }
+        
     }
 }

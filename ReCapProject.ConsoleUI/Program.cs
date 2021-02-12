@@ -10,20 +10,26 @@ namespace ReCapProject.ConsoleUI
     {
         static void Main(string[] args)
         {
+            //CustomerTest();
+            //RentalTest();
             CarManager carManager = new CarManager(new EfCarDal());
-            ColorManager colorManager = new ColorManager(new EfColorDal());
-            BrandManager brandManager = new BrandManager(new EfBrandDal());
-            // colorManager.Add(new Color { Id = 4, ColorName = "Sarı" });
-            //colorManager.Add(new Color { Id = 5, ColorName = "Mor" });
-            //colorManager.Delete(new Color {Id = 5, ColorName = "Mor" });
-            //brandManager.Add(new Brand { Id = 3, BrandName = "Opel" });
-           // brandManager.Add(new Brand { Id = 4, BrandName = "Nissan" });
-            //brandManager.Update(new Brand { Id = 3, BrandName = "Honda" });
-        
+            Console.WriteLine(carManager.Add(new Car {Id=7,BrandId=1,ColorId=1,Description="Mazda",DailyPrice=0,ModelYear=new DateTime(2021,01,01) }).Message);
 
-            foreach (var car in carManager.GetCarDetails())
+        }
+
+        private static void RentalTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            Console.WriteLine(rentalManager.Add(new Rental { Id = 1, CarId = 1, CustomerId = 1, RentDate = new DateTime(2021, 04, 02) }).Message);
+        }
+
+        private static void CustomerTest()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            customerManager.Add(new Customer { Id = 1, UserId = 1, CompanyName = "HRS" });
+            foreach (var customer in customerManager.GetAll().Data)
             {
-                Console.WriteLine(car.CarId+"|"+car.BrandName+"|"+car.ColorName+"|"+car.DailyPrice+"|"+car.Description);
+                Console.WriteLine(customer.Id + "  " + customer.UserId + "  " + customer.CompanyName);
             }
         }
     }
