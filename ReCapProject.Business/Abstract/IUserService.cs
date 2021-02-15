@@ -12,6 +12,6 @@ namespace ReCapProject.Business.Abstract
         IResult Delete(User user);
         IResult Update(User user);
         IDataResult<List<User>> GetAll();
-        IDataResult<List<User>> GetById(int id);
+        IDataResult<User> GetById(int id);
     }
 }

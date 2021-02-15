@@ -26,10 +26,10 @@ namespace ReCapProject.ConsoleUI
         private static void CustomerTest()
         {
             CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
-            customerManager.Add(new Customer { Id = 1, UserId = 1, CompanyName = "HRS" });
+            customerManager.Add(new Customer { Id = 1, CompanyName = "HRS" });
             foreach (var customer in customerManager.GetAll().Data)
             {
-                Console.WriteLine(customer.Id + "  " + customer.UserId + "  " + customer.CompanyName);
+                Console.WriteLine(customer.Id + "  " + customer.Id + "  " + customer.CompanyName);
             }
         }
     }

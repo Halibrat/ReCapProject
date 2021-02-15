@@ -35,9 +35,9 @@ namespace ReCapProject.Business.Concrete
             return new SuccessDataResult<List<User>>(_userDal.GetAll());
         }
 
-        public IDataResult<List<User>> GetById(int id)
+        public IDataResult<User> GetById(int id)
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll(u => u.Id == id));
+            return new SuccessDataResult<User>(_userDal.Get(u => u.Id == id));
         }
 
         public IResult Update(User user)
