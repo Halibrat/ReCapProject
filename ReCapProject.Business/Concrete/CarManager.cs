@@ -1,6 +1,9 @@
-﻿using Core.Utilities.Results;
+﻿using Core.Aspects.Autofac;
+using Core.CrossCuttingCorcerns.Validation;
+using Core.Utilities.Results;
 using ReCapProject.Business.Abstract;
 using ReCapProject.Business.Constans;
+using ReCapProject.Business.ValidationRules;
 using ReCapProject.DataAccess.Abstract;
 using ReCapProject.Entities.Concrete;
 using ReCapProject.Entities.DTO;
@@ -17,21 +20,12 @@ namespace ReCapProject.Business.Concrete
         {
             _carDal = carDal;
         }
-
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            if (car.Description.Length>=2 && car.DailyPrice>0)
-            {
+                ValidationTool.Validate(new CarValidator(), car);
                 _carDal.Add(car);
                 return new SuccessResult(Messages.CarAdded);
-            }
-           else if (car.Description.Length<2)
-            {
-                return new ErrorResult(Messages.DescriptionInvalid);
-                
-            }
-            return new ErrorResult(Messages.DailyPriceInvalid);
-         
         }
 
         public IResult Delete(Car car)
@@ -57,7 +51,7 @@ namespace ReCapProject.Business.Concrete
 
         public IDataResult< List<Car>> GetCarsByBrandId(int id)
         {
-            return new SuccessDataResult<List<Car>>( _carDal.GetAll(c => c.ColorId == id));
+            return new SuccessDataResult<List<Car>>( _carDal.GetAll(c => c.BrandId == id));
         }
 
         public IDataResult<List<Car>> GetCarsByColorId(int id)
