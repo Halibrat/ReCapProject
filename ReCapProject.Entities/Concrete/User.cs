@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ReCapProject.Entities.Concrete
 {
-   public class User:IEntity
+    class User:IEntity
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

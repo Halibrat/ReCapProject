@@ -1,4 +1,5 @@
-﻿using ReCapProject.Business.Concrete;
+﻿using Core.Entities.Concrete;
+using ReCapProject.Business.Concrete;
 using ReCapProject.DataAccess.Concrete.EntityFramework;
 using ReCapProject.DataAccess.Concrete.InMemory;
 using ReCapProject.Entities.Concrete;
@@ -13,7 +14,9 @@ namespace ReCapProject.ConsoleUI
             //CustomerTest();
             //RentalTest();
             CarManager carManager = new CarManager(new EfCarDal());
-            Console.WriteLine(carManager.Add(new Car {Id=7,BrandId=1,ColorId=1,Description="Mazda",DailyPrice=0,ModelYear=new DateTime(2021,01,01) }).Message);
+            Console.WriteLine(carManager.Add(new Car {BrandId=5,ColorId=3,Description="Lada Jeep",DailyPrice=1500,ModelYear=new DateTime(2021,01,01) }).Message);
+          
+            // UserTest();
 
         }
 
@@ -31,6 +34,11 @@ namespace ReCapProject.ConsoleUI
             {
                 Console.WriteLine(customer.Id + "  " + customer.Id + "  " + customer.CompanyName);
             }
+        }
+        private static void UserTest()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            Console.WriteLine(userManager.Add(new User { FirstName = "Alex", LastName = "Ferguson", Email = "sir@sir.com" }).Message);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace ReCapProject.Business.ValidationRules
     {
         public ColorValidator()
         {
+            
             RuleFor(co => co.Id).NotEmpty();
             RuleFor(co => co.ColorName).NotEmpty();
         }

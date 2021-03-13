@@ -11,7 +11,6 @@ namespace ReCapProject.Business.ValidationRules
         public CarValidator()
         {
             RuleFor(c => c.Id).NotEmpty();
-            RuleFor(c => c.Id).NotEmpty();
             RuleFor(c => c.BrandId).NotEmpty();
             RuleFor(c => c.ColorId).NotEmpty();
             RuleFor(c => c.Description).NotEmpty();
